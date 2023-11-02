@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+ 
+  - name: SAPSHP
+    schema: SAPSHP
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+    PROD_RAW{% elif target.database == 'TEST_EDW' -%} 
+    TEST_RAW{% elif target.database == 'PROD_EDW' -%} 
+    PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: STKO
+        identifier: VW_STKO
+      - name: MAST
+        identifier: VW_MAST
+      - name: T001L
+        identifier: VW_T001L
+      - name: RKPF
+        identifier: VW_RKPF
+      - name: STPO
+        identifier: VW_STPO
+      - name: MSEG
+        identifier: VW_MSEG

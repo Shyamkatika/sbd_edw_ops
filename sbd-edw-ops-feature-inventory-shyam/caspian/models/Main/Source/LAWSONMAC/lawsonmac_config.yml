@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+ 
+  - name: LAWSONMAC
+    schema: LAWSONMAC
+    database: "{% if target.database == 'DEV_EDW' -%} PROD_RAW{% elif target.database == 'TEST_EDW' -%} PROD_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: WMWMSMP
+        identifier: VW_WMWMSMP
+      - name: WMSLCMP
+        identifier: VW_WMSLCMP
+      - name: WMTRNXP
+        identifier: VW_WMTRNXP
+
+        

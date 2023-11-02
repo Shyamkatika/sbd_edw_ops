@@ -1,0 +1,37 @@
+SELECT DISTINCT * FROM
+(
+SELECT * FROM {{ref('METADATA_QADAR_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_QADBR_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_QADCH_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_SAPC11_OPS_VW')}} 
+Union All   
+SELECT * FROM {{ref('METADATA_SAPE03_OPS_VW')}} 
+Union All
+SELECT * FROM {{ref('METADATA_SAPP10_OPS_VW')}} 
+Union All
+SELECT * FROM {{ref('METADATA_QADPE_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_LEGACYWMS_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_JDA_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_JDAWMS_OPS_VW')}} 
+Union All
+SELECT * FROM {{ref('METADATA_LAWSONMAC_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_UFIDA_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_EXCEL_QADDB_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_EXCEL_ERRORPROOF_OPS_VW')}}
+union   all
+SELECT * FROM {{ref('METADATA_INFORXA_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_EXCEL_QADDB_OPS_VW')}}
+union all
+SELECT * FROM {{ref('METADATA_BLUEYONDER_OPS_VW')}}
+
+)

@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_PLANNING_CALENDAR','JDA','EDW_JDA_PLANNING_CALENDAR_VW')}}

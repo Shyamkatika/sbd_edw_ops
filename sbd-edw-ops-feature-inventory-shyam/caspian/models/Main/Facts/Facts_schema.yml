@@ -1,0 +1,421 @@
+version: 2
+
+models:
+
+  - name: FACT_INVENTORY_ON_HAND_SNAPSHOT
+    description: "Fact attributes for Inventory"
+    columns:
+      - name: INVTY_ON_HAND_SNAPSHOT_KEY
+        description: "Designed Composite Primary Key for this Dimensions (Key components to be determined)"
+
+      - name: SRC_SYS_KEY
+        description: "Identifies the origin of data source, in other word source system from where data is brought. The Key will be available in Source System table where one entry will exist for each participating system"
+
+      - name: SRC_RCRD_CREATE_DTE
+        description: "Date and time when this record was created at source system table (driver table in case of multiple table/files are involved)"
+
+      - name: SRC_RCRD_CREATE_USERID
+        description: "The ID of the user who created the record at the at source system table (driver table in case of multiple table/files are involved)"
+
+      - name: SRC_RCRD_UPD_DTE
+        description: "Date and time when this record was updated at source system table (driver table in case of multiple table/files are involved)"
+
+      - name: SRC_RCRD_UPD_USERID
+        description: "The ID of the user who updated the record at the at source system table (driver table in case of multiple table/files are involved)"
+
+      - name: RCRD_HASH_KEY
+        description: "The hash value (MD5/SHA256/etc.) of the qualified columns, that is considered to be different to enable versioning of record, will be stored in this column"
+
+      - name: DEL_FROM_SRC_FLAG
+        description: "When it is detected that the record has been deleted from the source table, then the corresponding record at target is marked as delete (soft delete) setting the flag as Y"
+
+      - name: ETL_INS_PID
+        description: "Contains information about the ETL/ELT job & package which has created the record"
+
+      - name: ETL_INS_DTE
+        description: "Date and time when this record is created or inserted at the target table"
+
+      - name: ETL_UPD_PID
+        description: "Contains information about the ETL/ELT job & package which has updated the record last time"
+
+      - name: ETL_UPD_DTE
+        description: "Date and time when this record is updated last time at the target table"
+
+      - name: ZONE4_ETL_UPD_DTE
+        description: "Zone4 ETL update date"
+
+      - name: ZONE4_ETL_INS_PID
+        description: "Zone4 ETL update PID"
+
+      - name: EFF_DTE
+        description: "Effective date"
+
+      - name: EXPR_DTE
+        description: "Expirty date"
+
+      - name: PROD_DFLT_LOC_KEY
+        description: "The default stocking location for this item at this site"
+
+      - name: ZONE3_LOD_DTE
+        description: "Zone3 load date"
+
+      - name: PROD_KEY
+        description: "Product Key"
+
+      - name: LOC_KEY
+        description: "Location Code"
+
+      - name: RESTRCT_PROD_BY_LOC_TYP_LKEY
+        description: "Identifies items which are restricted to certain locations by type"
+
+      - name: INVTY_GRADE_LKEY
+        description: "The default inventory grade for this item"
+
+      - name: INVTY_CRCTD_FACTOR_LKEY
+        description: "Inventory correction factor"
+
+      - name: SLOC_MRP_LKEY
+        description: "Storage location MRP indicator"
+
+      - name: INVTY_RESTRCT_USE_STK_STAT_LKEY
+        description: "Physical inventory indicator for restricted-use stock"
+
+      - name: INVTY_WHSE_USE_STK_STAT_LKEY
+        description: "Records the physical inventory status of the respective stock"
+
+      - name: INVTY_QLTY_INSPCT_STK_STAT_LKEY
+        description: "Phys. inventory ind. f. stock in qual. insp. in current year"
+
+      - name: INVTY_BLKD_STK_STAT_LKEY
+        description: "Physical inventory indicator for blocked stock"
+
+      - name: PAST_INVTY_RESTRCT_USE_STK_STAT_LKEY
+        description: "Physical inventory ind. for restricted-use stock, prev.pd"
+
+      - name: PAST_INVTY_WHSE_USE_STK_STAT_LKEY
+        description: "Physical inventory indicator for stock in previous year"
+
+      - name: PAST_INVTY_QLTY_INSPCT_STK_STAT_LKEY
+        description: "Phys. inventory ind. f. stock in qual. insp. in prev. period"
+
+      - name: PAST_INVTY_BLKD_STK_STAT_LKEY
+        description: "Phys. inventory indicator for blocked stock in prev. period"
+
+      - name: SPCL_PROCUR_TYP_LKEY
+        description: "Special procurement type at storage location level"
+
+      - name: MTNC_STAT_TYP_LKEY
+        description: "Maintenance status"
+
+      - name: CURR_PROD_COST_LKEY
+        description: "Current Product cost"
+
+      - name: MRP_PROC_FLAG
+        description: "A flag indicating that a net change MRP should process this item/site"
+
+      - name: ROLL_FLAG
+        description: "A flag indicating that this record should be rolled up"
+
+      - name: SLOC_LVL_DEL_FLAG
+        description: "Flag Material for Deletion at Storage Location Level"
+
+      - name: PAST_RCRD_EXISTS_FLAG
+        description: "MARDH rec. already exists for per. before last of MARD per"
+
+      - name: PROD_RCV_DTE
+        description: "The recent AMT this Item was received "
+
+      - name: PROD_ADD_LOC_DTE
+        description: "The ORDER ID this Item was added into this location"
+
+      - name: LAST_STOCKROOM_ISS_DTE
+        description: "The last stockroom issue date for this item at this site"
+
+      - name: LAST_STOCKROOM_RCPT_DTE
+        description: "The last stockroom receipt date for this item at this site"
+
+      - name: CYCLE_CNT_DTE
+        description: "The last cycle count transaction date for this item at this site"
+
+      - name: SLS_AND_GOODS_ISS_CALC_DTE
+        description: "The last date sales and issues averages were calculated"
+
+      - name: UNRSTR_USE_STK_LAST_CNT_DTE
+        description: "Date of last inventory count for unrestricted stock"
+
+      - name: REF_WORK_ORD_NBR
+        description: "The related Working Order assigned against this item. E.g For MRA Location Type, Material Return order# from MR200HP file"
+
+      - name: INVTY_LVL_NBR
+        description: "The level of this item/site in the planning sequence"
+
+      - name: CURR_CLNDR_PERD_NBR
+        description: "The current period is a self-contained part of the current fiscal year"
+
+      - name: PROD_MAX_ORD_QTY
+        description: "Maximum quantity of this Item that can be stored in this location"
+
+      - name: PROD_MAX_ORD_AMT
+        description: "Maximum amount for the location"
+
+      - name: PROD_ALLOC_QTY
+        description: "Total Allocated quantity of this Item"
+
+      - name: PROD_ALLOC_AMT
+        description: "Total Allocated amount for this Item"
+
+      - name: PROD_BKORD_QTY
+        description: "Quantity of this Item back ordered"
+
+      - name: PROD_BKORD_AMT
+        description: "Product back ordered amount"
+
+      - name: PROD_ON_HAND_QTY
+        description: "On-hand balance is the quantity of an item physically in stock according to the system"
+
+      - name: PROD_ON_HAND_AMT
+        description: "On-hand amount of an item according to the system"
+
+      - name: PROD_MIN_ORD_QTY
+        description: "Minimum Order Quantity"
+
+      - name: PROD_MIN_ORD_AMT
+        description: "Minimum Order Amount"
+
+      - name: PROD_NET_ON_HAND_QTY
+        description: "The nettable quantity on hand for this item at this site"
+
+      - name: PROD_NET_ON_HAND_AMT
+        description: "The nettable amount on hand for this item at this site"
+
+      - name: PROD_REQ_QTY
+        description: "The total demand on all S/Os and released W/Os for this item/site"
+
+      - name: PROD_REQ_AMT
+        description: "The total amount on all S/Os and released W/Os for this item/site"
+
+      - name: PROD_ORD_QTY
+        description: "The quantity on all open POs and released W/Os for this item/site"
+
+      - name: PROD_ORD_AMT
+        description: "The amount on all open POs and released W/Os for this item/site"
+
+      - name: PROD_REORD_QTY
+        description: "The quantity on hand that triggers action on the reorder report"
+
+      - name: PROD_REORD_AMT
+        description: "The amount on hand that triggers action on the reorder report"
+
+      - name: PROD_NON_NETTABLE_ON_HAND_QTY
+        description: "The non-nettable quantity on hand for this item at this site"
+
+      - name: PROD_NON_NETTABLE_ON_HAND_AMT
+        description: "The non-nettable amount on hand for this item at this site"
+
+      - name: ANTICIPATED_PROD_QTY
+        description: "The anticipated monthly usage of this item"
+
+      - name: ANTICIPATED_PROD_AMT
+        description: "The anticipated monthly usage of this item"
+
+      - name: RESTRCT_BATCHES_TOT_QTY
+        description: "Total quantity of stock available from all the restricted batch. These can be restricted due to quality issues"
+
+      - name: RESTRCT_BATCHES_TOT_AMT
+        description: "Total amount of stock available from all the restricted batch"
+
+      - name: QLTY_INSPCT_STK_QTY
+        description: "Total quantity of stock which is under quality inspection"
+
+      - name: QLTY_INSPCT_STK_AMT
+        description: "Total amount of the stock"
+
+      - name: RESTRCT_USE_STK_QTY
+        description: "Total quantity of consignment stock that are put under restricted use especially due to quality failure"
+
+      - name: RESTRCT_USE_STK_AMT
+        description: "Total amount that are put under restricted use especially due to quality failure"
+
+      - name: QLTY_INSPCT_CNSGN_STK_QTY
+        description: "Total quantity of consignment stock that are under quality inspection"
+
+      - name: QLTY_INSPCT_CNSGN_STK_AMT
+        description: "Amount for the Total quantity of consignment stock that are under quality inspection"
+
+      - name: UNRSTR_USE_STK_QTY
+        description: "Total quantity of consignment stock that are open to use"
+
+      - name: UNRSTR_USE_STK_AMT
+        description: "Total amount that is open to use"
+
+      - name: BLKD_CNSGN_STK_QTY
+        description: "Total quantity of consignment stock that are blocked for use"
+
+      - name: BLKD_CNSGN_STK_AMT
+        description: "Total amount that are blocked for use"
+
+      - name: VALUATED_UNRSTR_STK_QTY
+        description: "Quantity that is physically located in the warehouse, is valuated, and is not subject to any usage restrictions"
+
+      - name: VALUATED_UNRSTR_STK_AMT
+        description: "Amount that is physically located, is valuated, and is not subject to any usage restrictions"
+
+      - name: REPL_QTY
+        description: "Quantity that must be ordered or produced in the case of shortage at a storage location"
+
+      - name: REPL_AMT
+        description: "Amount generated in the case of shortage at a storage location"
+
+      - name: REORD_POINT_LVL_QTY
+        description: "Reorder point for the material at the storage location level"
+
+      - name: REORD_POINT_LVL_AMT
+        description: "Amount at the storage location level"
+
+      - name: BLKD_STK_RTRN_QTY
+        description: "Total quantity of stock returned from the customer and are posted initially to blocked stock where they are not subject to valuation"
+
+      - name: BLKD_STK_RTRN_AMT
+        description: "Total Amount returned from the customer and are posted initially to blocked stock where they are not subject to valuation"
+
+      - name: BLKD_STK_QTY
+        description: "Total quantity of stock under block stock type. The stocks could be blocked due to multiple reasons like pending inspection"
+
+      - name: BLKD_STK_AMT
+        description: "Total Amount under block type. The amounts could be blocked due to multiple reasons like pending inspection"
+
+      - name: TRANSFERRED_STK_QTY
+        description: "Total stock in transfer between two storage location within the same plant"
+
+      - name: TRANSFERRED_STK_AMT
+        description: "Total Amount between two storage location within the same plant"
+
+      - name: PAST_PERD_RESTRCT_STK_QTY
+        description: "Stock which was restricted to use in the previous period"
+
+      - name: PAST_PERD_RESTRCT_STK_AMT
+        description: "Amount which was restricted to use in the previous period"
+
+      - name: PAST_PERD_QLTY_INSPCT_QTY
+        description: "Stock which was under quality inspection in the previous period"
+
+      - name: PAST_PERD_QLTY_INSPCT_AMT
+        description: "Amount for the quantity which was under quality inspection in the previous period"
+
+      - name: PAST_PERD_UNRSTR_USE_STK_QTY
+        description: "Valuated unrestricted-use stock in previous period"
+
+      - name: PAST_PERD_UNRSTR_USE_STK_AMT
+        description: "Valuated unrestricted-amount in previous period"
+
+      - name: PAST_PERD_BLKD_STK_RTRN_QTY
+        description: "Total quantity of stock returned from the customer in the previou period and are posted initially to blocked stock where they are not subject to valuation"
+
+      - name: PAST_PERD_BLKD_STK_RTRN_AMT
+        description: "Total Amount returned from the customer and are posted initially to blocked stock where they are not subject to valuation"
+
+      - name: PAST_PERD_BLKD_STK_QTY
+        description: "Total quantity of stock under block stock type in the previous period. The stocks could be blocked due to multiple reasons like pending inspection"
+
+      - name: PAST_PERD_BLKD_STK_AMT
+        description: "Total Amount under block type in the previous period. The amounts could be blocked due to multiple reasons like pending inspection"
+
+      - name: PAST_PERD_TRNSFR_STK_QTY
+        description: "Total quantity in transfer when the period was last closed, that is, that had already been withdrawn from the issuing storage location, but had not yet reached the receiving storage location"
+
+      - name: PAST_PERD_TRNSFR_STK_AMT
+        description: "Total amount in transfer when the period was last closed, that is, that had already been withdrawn from the issuing storage location, but had not yet reached the receiving storage location"
+
+      - name: DIV_ID
+        description: "Division is an organizational unit based on responsibility for sales or profits from saleable materials or services"
+
+      - name: PROD_RCV_YR_ID
+        description: "The recent century this Item item was received"
+
+      - name: INVTY_STAT_TYP
+        description: "The status of this Item in the location. E.g. Status Hold - prevents picking or any adjustments to be performed on this Item"
+
+      - name: MISC_TYP
+        description: "Miscellaneous Type"
+
+      - name: TOT_SLS_RCPT_AMT
+        description: "The total sales issues for this item/site since the last average"
+
+      - name: TOT_SLS_ISS_AMT
+        description: "The total issues for this item from this site since the last average"
+
+      - name: AVG_GOODS_ISS_PER_DY_CNT
+        description: "The average issues per day as of the last calculation"
+
+      - name: AVG_SLS_PER_DY_AMT
+        description: "The average sales per day as of the last calculation"
+
+      - name: PROD_ASSAY_PCT
+        description: "The normal assay percentage (percent solution) of an item"
+
+      - name: ORIG_CNTRY_ID
+        description: "Country where the material is manufactured"
+
+      - name: CURR_FYR
+        description: "Defines a settlement period. In the simplest case, the fiscal year and the calendar year will match. Otherwise, the calendar days on which individual posting periods end must be defined"
+
+      - name: SLOC_ID
+        description: "Location where the material is stored in a plant"
+
+      - name: STORG_BIN_ID
+        description: "Identifies the storage bin within a storage location where the material is stored"
+
+      - name: PICK_AREA_FOR_LEAN_WM_TYP
+        description: "Picking area for lean WM"
+
+      - name: PHY_INVTY_FYR
+        description: "Fiscal year of current physical inventory indicator"
+
+      - name: FIN_PROFIT_CNTR_ID
+        description: "Profit Center"
+
+      - name: PHY_INVTY_BLOCK_TYP
+        description: "Indicates if blocking indicator is on for item. When ever physical inventory is carried out we need to either block stock movement or freeze stock"
+
+      - name: VALUATED_STK_SLS_VAL_AMT
+        description: "Stock value of a value-only material at sales price"
+
+      - name: STK_TRNSFR_SLS_VAL_AMT
+        description: "Sales value in stock transfer (SLOc to SLoc)"
+
+      - name: GL_PROD_COST_TYP
+        description: "The general ledger cost set used by this part at this site"
+
+      - name: SUB_LOC_TYP
+        description: "Site where this transaction was performed"
+
+      - name: PAST_FYR_TM
+        description: "The Calendar year for the current year.E.g. It defines a settlement period which can be divided into 12-16 posting periods"
+
+      - name: PAST_FSCL_PERD_TM
+        description: "Fiscal Month of fiscal year"
+
+      - name: PROD_ADD_LOC_YR_ID
+        description: "The Century this Item was added into this location"
+
+      - name: PROD_REL_SET_ITEM
+        description: "a BOM is related to this Item. E.g. This item may be child component to the BOM"
+
+      - name: STANDARD_PRICE
+        description: "Standard Price"
+
+      - name: UNIT_PRICE
+        description: "Unit Price"
+
+      - name: CO_KEY
+        description: "Company Key"
+
+      - name: CRNCY_KEY
+        description: "Currency Key"
+
+      - name: VALTN_CLASS
+        description: "Valuation class"
+
+      
+
+      

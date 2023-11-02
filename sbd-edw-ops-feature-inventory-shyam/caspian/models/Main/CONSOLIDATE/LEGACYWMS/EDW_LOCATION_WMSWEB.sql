@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_LOCATION','WMSWEB','EDW_LEGACYWMS_LOCATION_WMSWEB_VW')}}

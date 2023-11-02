@@ -1,0 +1,165 @@
+version: 2
+
+sources:
+ 
+  - name: EDW_REFDATA
+    schema: EDW_REFDATA
+    database: "{% if target.database == 'DEV_EDW' -%} TEST_EDW{% elif target.database == 'TEST_EDW' -%} TEST_EDW{% elif target.database == 'PROD_EDW' -%} PROD_EDW{% elif target.database == 'UAT_MARTS' -%}PROD_EDW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: CURRENCYXREF
+      - name: REF_GLOBALFILTERS
+      - name: REF_OTIF_FILTER
+      - name: LAG_COUNTRY_REGION
+
+  - name: EDW_DBT_VIEWS
+    schema: EDW_DBT_VIEWS
+    database: "{% if target.database == 'DEV_EDW' -%} DEV_MARTS{% elif target.database == 'TEST_EDW' -%} TEST_MARTS{% elif target.database == 'PROD_EDW' -%} PROD_MARTS{% elif target.database == 'UAT_MARTS' -%}PROD_MARTS
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: CURRENCYXREF
+        identifier: CURRENCYXREF 
+      - name: MATVW_CODE_LOV
+        identifier: MATVW_CODE_LOV 
+      - name: VW_FACT_SALES_INVOICE_TRANSACTION
+        identifier: VW_FACT_SALES_INVOICE_TRANSACTION
+      - name: VW_FACT_SALES_PERFORMANCE_MONTHLY
+        identifier: VW_FACT_SALES_PERFORMANCE_MONTHLY
+      - name: VW_FACT_SALES_PERFORMANCE_BASE_PERIOD
+        identifier: VW_FACT_SALES_PERFORMANCE_BASE_PERIOD     
+        
+  
+
+  - name: CONSOLIDATED_PROD
+    schema: CONSOLIDATED
+    database: "{% if target.database == 'DEV_EDW' -%} PROD_EDW{% elif target.database == 'TEST_EDW' -%} PROD_EDW{% elif target.database == 'PROD_EDW' -%} PROD_EDW{% elif target.database == 'UAT_EDW' -%}PROD_EDW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables: 
+      - name: VW_EDW_CURRENCY_RATE_CONVERSION
+        identifier: VW_EDW_CURRENCY_RATE_CONVERSION    
+      - name: VW_EDW_SALES_ORDER_HEADER
+        identifier: VW_EDW_SALES_ORDER_HEADER    
+      - name: VW_EDW_SALES_ORDER_LINE
+        identifier: VW_EDW_SALES_ORDER_LINE 
+      - name: VW_EDW_SALES_INVOICE_LINE
+        identifier: VW_EDW_SALES_INVOICE_LINE   
+      - name: VW_EDW_SALES_INVOICE_HEADER
+        identifier: VW_EDW_SALES_INVOICE_HEADER  
+      - name: VW_EDW_CURRENCY   
+        identifier: VW_EDW_CURRENCY 
+      - name: VW_EDW_CALENDAR
+        identifier: VW_EDW_CALENDAR
+      - name: VW_EDW_CUSTOMER
+        identifier: VW_EDW_CUSTOMER
+      - name: VW_EDW_ADDRESS
+        identifier: VW_EDW_ADDRESS
+      - name: VW_EDW_INVENTORY_ON_HAND_SNAPSHOT
+        identifier: VW_EDW_INVENTORY_ON_HAND_SNAPSHOT
+      - name: EDW_INVENTORY_ON_HAND_SNAPSHOT
+        identifier: EDW_INVENTORY_ON_HAND_SNAPSHOT
+      - name: EDW_PRODUCT_COST
+        identifier: EDW_PRODUCT_COST
+      - name: VW_EDW_PRODUCT_LOCATION
+        identifier: VW_EDW_PRODUCT_LOCATION
+      - name: VW_EDW_PRODUCT_COST
+        identifier: VW_EDW_PRODUCT_COST
+      - name: VW_EDW_COMPANY
+        identifier: VW_EDW_COMPANY
+      - name: VW_EDW_LOCATION
+        identifier: VW_EDW_LOCATION
+
+
+  - name: CONSOLIDATED_TEST
+    schema: CONSOLIDATED
+    database: "{% if target.database == 'DEV_EDW' -%} TEST_EDW{% elif target.database == 'TEST_EDW' -%} TEST_EDW{% elif target.database == 'PROD_EDW' -%} PROD_EDW{% elif target.database == 'UAT_EDW' -%}PROD_EDW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables: 
+      - name: VW_EDW_LOCATION
+        identifier: VW_EDW_LOCATION
+
+
+  - name: CONSOLIDATED_DEV
+    schema: CONSOLIDATED
+    database: "{% if target.database == 'DEV_EDW' -%} DEV_EDW{% elif target.database == 'TEST_EDW' -%} DEV_EDW{% elif target.database == 'PROD_EDW' -%} PROD_EDW{% elif target.database == 'UAT_EDW' -%}PROD_EDW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables: 
+      - name: EDW_INVENTORY_ON_HAND_SNAPSHOT
+        identifier: EDW_INVENTORY_ON_HAND_SNAPSHOT          
+
+
+  - name: CONSOLIDATED
+    schema: CONSOLIDATED
+    database: "{% if target.database == 'DEV_EDW' -%} DEV_EDW{% elif target.database == 'TEST_EDW' -%} TEST_EDW{% elif target.database == 'PROD_EDW' -%} PROD_EDW{% elif target.database == 'UAT_EDW' -%}UAT_EDW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables: 
+      - name: VW_EDW_SALES_INVOICE_LINE
+        identifier: VW_EDW_SALES_INVOICE_LINE
+
+      - name: VW_EDW_SALES_INVOICE_HEADER
+        identifier: VW_EDW_SALES_INVOICE_HEADER    
+
+      - name: VW_EDW_SALES_ORDER_LINE
+        identifier: VW_EDW_SALES_ORDER_LINE    
+      - name: VW_EDW_INVENTORY_ON_HAND_SNAPSHOT
+        identifier: VW_EDW_INVENTORY_ON_HAND_SNAPSHOT
+      - name: EDW_INVENTORY_ON_HAND_SNAPSHOT
+        identifier: EDW_INVENTORY_ON_HAND_SNAPSHOT
+
+  - name: MARTS_OTIF
+    schema: OTIF
+    database: "{% if target.database == 'DEV_EDW' -%} PROD_MARTS{% elif target.database == 'TEST_EDW' -%} TEST_MARTS{% elif target.database == 'PROD_EDW' -%} PROD_MARTS{% elif target.database == 'UAT_MARTS' -%}PROD_MARTS
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: V_SRC_CONSOLIDATED_SALESORG_ENTHIERACHY
+        identifier: V_SRC_CONSOLIDATED_SALESORG_ENTHIERACHY
+  - name: SAPSHP
+    schema: SAPSHP
+    database: "{% if target.database == 'DEV_EDW' -%} DEV_RAW{% elif target.database == 'TEST_EDW' -%} PROD_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: STG_SHP_DS_CFIN_MAPPING
+        identifier: VW_STG_SHP_DS_CFIN_MAPPING
+      - name: STG_SHP_FBWNF
+        identifier: VW_STG_SHP_FBWNF 
+      - name: STG_SHP_FPCC
+        identifier: VW_F_PCCC        
+
+  - name: DIMENSIONS
+    schema: DIMENSIONS
+    database: "{% if target.database == 'DEV_EDW' -%} PROD_EDW{% elif target.database == 'TEST_EDW' -%} PROD_EDW{% elif target.database == 'PROD_EDW' -%} PROD_EDW{% elif target.database == 'UAT_MARTS' -%}PROD_EDW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: DIM_PRODUCT
+        identifier: DIM_PRODUCT
+
+      - name: DIM_CUSTOMER
+        identifier: DIM_CUSTOMER
+      - name: DIM_PRODUCT_LOC_VALUATION
+        identifier: DIM_PRODUCT_LOC_VALUATION
+      - name: DIM_COMPANY
+        identifier: DIM_COMPANY
+
+  - name: FACTS
+    schema: FACTS
+    database: "{% if target.database == 'DEV_EDW' -%} PROD_EDW{% elif target.database == 'TEST_EDW' -%} TEST_EDW{% elif target.database == 'PROD_EDW' -%} PROD_EDW{% elif target.database == 'UAT_MARTS' -%}PROD_EDW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: FACT_SALES_ORDER_TRANSACTION
+        identifier: FACT_SALES_ORDER_TRANSACTION
+      - name: FACT_SALES_INVOICE_TRANSACTION
+        identifier: FACT_SALES_INVOICE_TRANSACTION 
+      - name: FACT_INVENTORY_ON_HAND_SNAPSHOT
+        identifier: FACT_INVENTORY_ON_HAND_SNAPSHOT 
+
+
+  - name: SAPE03
+    schema: SAPE03
+    database: "{% if target.database == 'DEV_EDW' -%} PROD_RAW{% elif target.database == 'TEST_EDW' -%} PROD_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_MARTS' -%}PROD_EDW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: ZSSRDT
+        identifier: ZSSRDT
+      - name: ZSSRFT
+        identifier: ZSSRFT        
+      - name: ZSSRSS
+        identifier: ZSSRSS                        

@@ -1,0 +1,78 @@
+version: 2
+
+sources:
+
+ - name: QADBR
+   database: "{% if target.database == 'DEV_EDW' -%} PROD_RAW{% elif target.database == 'TEST_EDW' -%} PROD_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+   tables:
+      - name: IHHIST
+        identifier: VW_IHHIST
+      - name: IDHHIST
+        identifier: VW_IDHHIST
+      - name: ADMSTR
+        identifier: VW_ADMSTR
+      - name: CMMSTR
+        identifier: VW_CMMSTR
+      - name: SIMSTR
+        identifier: VW_SIMSTR
+      - name: TRHIST
+        identifier: VW_TRHIST
+      - name: ARMSTR
+        identifier: VW_ARMSTR
+      - name: PTMSTR
+        identifier: VW_PTMSTR
+      - name: UMMSTR
+        identifier: VW_UMMSTR
+      - name: PTPDET
+        identifier: VW_PTPDET
+      - name: ENMSTR
+        identifier: VW_ENMSTR
+      - name: SODDET
+        identifier: VW_SODDET
+      - name: SOMSTR
+        identifier: VW_SOMSTR
+      - name: SCHDDET
+        identifier: VW_SCHDDET
+      - name: CPMSTR
+        identifier: VW_CPMSTR
+      - name: LNGMSTR
+        identifier: VW_LNGMSTR
+      - name: CTMSTR
+        identifier: VW_CTMSTR
+      - name: SCHMSTR
+        identifier: VW_SCHMSTR
+      - name: ABSMSTR
+        identifier: VW_ABSMSTR
+      - name: SCXREF
+        identifier: VW_SCXREF
+      - name: CODEMSTR
+        identifier: VW_CODEMSTR
+      - name: CTRYMSTR
+        identifier: VW_CTRYMSTR
+      - name: SPMSTR
+        identifier: VW_SPMSTR
+      - name: CCMSTR
+        identifier: VW_CCMSTR
+      - name: LOCMSTR
+        identifier: VW_LOCMSTR
+      - name: SCTDET
+        identifier: VW_SCTDET
+      - name: CUMSTR    
+        identifier: VW_CUMSTR
+      - name: GLCALENDAR    
+        identifier: VW_GLCALENDAR
+      - name: EXMSTR    
+        identifier: VW_EXMSTR
+      - name: LGDMSTR    
+        identifier: VW_LGDMSTR
+      - name: LGDDDET    
+        identifier: VW_LGDDDET
+      - name: PSMSTR    
+        identifier: VW_PSMSTR
+      - name: TAGMSTR    
+        identifier: VW_TAGMSTR
+      - name: BDRESERVA    
+        identifier: VW_BDRESERVA
+      - name: BDRESITEM    
+        identifier: VW_BDRESITEM

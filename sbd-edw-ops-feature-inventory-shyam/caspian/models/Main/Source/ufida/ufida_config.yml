@@ -1,0 +1,102 @@
+version: 2
+
+sources:
+ 
+  - name: UFIDA
+    schema: UFIDA
+    database:  "{% if target.database == 'DEV_EDW' -%} PROD_RAW{% elif target.database == 'TEST_EDW' -%} PROD_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW{% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: APCLOSEBILL
+        identifier: VW_APCLOSEBILL
+      - name: APCLOSEBILLS
+        identifier: VW_APCLOSEBILLS
+      - name: APDETAIL
+        identifier: VW_APDETAIL
+      - name: ARDETAIL
+        identifier: VW_ARDETAIL
+      - name: BASCALENDAR
+        identifier: VW_BASCALENDAR
+      - name: BASPART
+        identifier: VW_BASPART
+      - name: BOM
+        identifier: VW_BOM
+      - name: BOMOPCOMPONENT
+        identifier: VW_BOMOPCOMPONENT
+      - name: BOMPARENT
+        identifier: VW_BOMPARENT
+      - name: CACOSTCENTER
+        identifier: VW_CACOSTCENTER
+      - name: CODE
+        identifier: VW_CODE
+      - name: COMPUTATIONUNIT
+        identifier: VW_COMPUTATIONUNIT
+      - name: CURRENCY
+        identifier: VW_CURRENCY
+      - name: CUSTOMER
+        identifier: VW_CUSTOMER
+      - name: CUSTOMERCLASS
+        identifier: VW_CUSTOMERCLASS
+      - name: DISPATCHLIST
+        identifier: VW_DISPATCHLIST
+      - name: DISPATCHLISTS
+        identifier: VW_DISPATCHLISTS
+      - name: DISTRICTCLASS
+        identifier: VW_DISTRICTCLASS
+      - name: EXCH
+        identifier: VW_EXCH
+      - name: EXCHANGE
+        identifier: VW_EXCHANGE
+      - name: EXCH_TEST
+        identifier: VW_EXCH_TEST
+      - name: IASUBSIDIARY
+        identifier: VW_IASUBSIDIARY
+      - name: INVENTORY
+        identifier: VW_INVENTORY
+      - name: INVENTORYCLASS
+        identifier: VW_INVENTORYCLASS
+      - name: INVENTORYSUB
+        identifier: VW_INVENTORYSUB
+      - name: MATERIAL
+        identifier: VW_MATERIAL
+      - name: MATERIALCLASS
+        identifier: VW_MATERIALCLASS
+      - name: PAYCONDITION
+        identifier: VW_PAYCONDITION
+      - name: PERSON
+        identifier: VW_PERSON
+      - name: PODETAILS
+        identifier: VW_PODETAILS
+      - name: POMAIN
+        identifier: VW_POMAIN
+      - name: PURBILLVOUCH
+        identifier: VW_PURBILLVOUCH
+      - name: PURBILLVOUCHS
+        identifier: VW_PURBILLVOUCHS
+      - name: RDRECORD01
+        identifier: VW_RDRECORD01
+      - name: RDRECORD32
+        identifier: VW_RDRECORD32
+      - name: RDRECORDS01
+        identifier: VW_RDRECORDS01
+      - name: RDRECORDS32
+        identifier: VW_RDRECORDS32
+      - name: SACUSUPRICEVIEW
+        identifier: VW_SACUSUPRICEVIEW
+      - name: SALEBILLVOUCH
+        identifier: VW_SALEBILLVOUCH
+      - name: SOSODETAILS
+        identifier: VW_SOSODETAILS
+      - name: SOSOMAIN
+        identifier: VW_SOSOMAIN
+      - name: VENDOR
+        identifier: VW_VENDOR
+      - name: WAREHOUSE
+        identifier: VW_WAREHOUSE
+      - name: SALEBILLVOUCHS
+        identifier: VW_SALEBILLVOUCHS
+      - name: CUSDELIVERADD
+        identifier: VW_CUSDELIVERADD
+      - name: FOREIGNCURRENCY
+        identifier: VW_FOREIGNCURRENCY
+      - name: CHECKVOUCHS
+        identifier: VW_CHECKVOUCHS

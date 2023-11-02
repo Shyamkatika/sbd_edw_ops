@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_DEMAND_SALES_HISTORY','JDA','EDW_JDA_DEMAND_SALES_HISTORY_VW')}}

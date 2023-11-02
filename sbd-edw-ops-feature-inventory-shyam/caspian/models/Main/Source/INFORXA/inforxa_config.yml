@@ -1,0 +1,83 @@
+version: 2
+
+sources:
+ 
+  - name: INFORXA
+    schema: INFORXA
+    database:  "{% if target.database == 'DEV_EDW' -%} DEV_RAW{% elif target.database == 'TEST_EDW' -%}TEST_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: SLQNTY_AUS
+        identifier: VW_SLQNTY_AUS
+      - name: SLQNTY
+        identifier: VW_SLQNTY
+      - name: SLQNTY_CHI
+        identifier: VW_SLQNTY_CHI
+      - name: SLQNTY_GER
+        identifier: VW_SLQNTY_GER
+      - name: SLQNTY_MEC
+        identifier: VW_SLQNTY_MEC
+      - name: SLQNTY_MAR
+        identifier: VW_SLQNTY_MAR
+      - name: SLQNTY_MTDSW
+        identifier: VW_SLQNTY_MTDSW
+      - name: SLQNTY_RVI
+        identifier: VW_SLQNTY_RVI
+      - name: SLQNTY_SHB
+        identifier: VW_SLQNTY_SHB
+      - name: SLQNTY_TUP
+        identifier: VW_SLQNTY_TUP
+      - name: SLQNTY_WIL
+        identifier: VW_SLQNTY_WIL
+      - name: WHSMST
+        identifier: VW_WHSMST
+      - name: ITEMBL
+        identifier: VW_ITEMBL      
+      - name: ITMRVA
+        identifier: VW_ITMRVA
+      - name: SLALLO
+        identifier: VW_SLALLO  
+      - name: ITEMASUE
+        identifier: VW_ITEMASUE
+      - name: PHYINVCT_MAR
+        identifier: VW_PHYINVCT_MAR
+      - name: PHYINVCT_TUP
+        identifier: VW_PHYINVCT_TUP
+      - name: PHYINVCT_NOG
+        identifier: VW_PHYINVCT_NOG
+      - name: PHYINVCT_WIL
+        identifier: VW_PHYINVCT_WIL
+      - name: IMHISTAUS
+        identifier: VW_IMHISTAUS
+      - name: IMHISTBRN
+        identifier: VW_IMHISTBRN
+      - name: IMHISTCANS
+        identifier: VW_IMHISTCANS
+      - name: IMHISTCANW
+        identifier: VW_IMHISTCANW
+      - name: IMHISTCHI
+        identifier: VW_IMHISTCHI
+      - name: IMHISTLEI
+        identifier: VW_IMHISTLEI
+      - name: IMHISTMAR
+        identifier: VW_IMHISTMAR
+      - name: IMHISTRVI
+        identifier: VW_IMHISTRVI
+      - name: IMHISTSHB
+        identifier: VW_IMHISTSHB
+      - name: ITMPLN_RVI
+        identifier: VW_ITMPLN_RVI
+      - name: ITMPLN_CHI
+        identifier: VW_ITMPLN_CHI
+      - name: ITMPLN_SHB
+        identifier: VW_ITMPLN_SHB
+      - name: ITMPLN_MAR
+        identifier: VW_ITMPLN_MAR
+      - name: ITMPLN_AUS
+        identifier: VW_ITMPLN_AUS
+      - name: ITMPLN_CANWG
+        identifier: VW_ITMPLN_CANWG
+      - name: ITMPLN_CANSVC
+        identifier: VW_ITMPLN_CANSVC
+      - name: ITMRVB
+        identifier: VW_ITMRVB

@@ -1,0 +1,50 @@
+SELECT 
+'INFORLX' AS {{var('column_srcsyskey')}},
+UPPER(CONCAT(coalesce(IWI.WWHS::VARCHAR,'1'),'~',coalesce(IWI.WPROD::VARCHAR,'1'))) as INVTY_ON_HAND_SNAPSHOT_KEY,
+MD5(UPPER(CONCAT(coalesce(IWI.WWHS::VARCHAR,'1'),'~',coalesce(IWI.WPROD::VARCHAR,'1')))) AS {{var('column_rechashkey')}},
+{{var('default_n')}} AS {{var('column_DEL_FROM_SRC_FLAG')}},
+'{{model.name}}' AS {{var('column_ETL_INS_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_INS_DTE')}},
+'{{model.name}}' AS {{var('column_ETL_UPD_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_UPD_DTE')}},
+IWI.LOADDTS AS {{var('column_z3loddtm')}},
+IWI.LOADDTS AS {{var('column_vereffdte')}},
+'9999-12-31 00:00:00.000' AS {{var('column_verexpirydt')}},
+{{var('default_y')}} AS {{var('column_currrecflag')}},
+{{var('default_n')}} AS {{var('column_orprecflag')}},
+IWI.WADJ	as	ADJ_ORD_NBR	,
+IWI.WCUSA	as	ALLOC_ORD_QTY	,
+IWI.WILOC	as	PROD_RCV_LOC_KEY	,
+IWI.WISS	as	TXN_TYP_LKEY	,
+IWI.WMTDC	as	MTD_SLS_COST	,
+IWI.WMTDP	as	PROD_MTD_QTY	,
+IWI.WOPB	as	PROD_OPN_BAL_QTY	,
+IWI.WPROD	as	PROD_KEY	,
+IWI.WRCT	as	RCPT_KEY	,
+IWI.WSAL	as	MTD_SLS_UNITS_QTY	,
+IWI.WSDL	as	MTD_SLS_AMT	,
+IWI.WWHS	as	SLOC_KEY	,
+IWI.WYSAL	as	YTD_SLS_UNITS_QTY	,
+IWI.WYSDL	as	YTD_SLS_AMT	,
+IWI.WYTDC	as	YTD_SLS_COST	,
+IWI.WYTDP	as	YTD_PRODTN_QTY	,
+IWI.WICIOQ	as	INCREMENTAL_ORD_QTY	,
+IWI.WICMOQ	as	PROD_MIN_ORD_QTY	,
+IWI.WICSOQ	as	PROD_STD_ORD_QTY	,
+IWI.WICUSW	as	ALLOC_PROD_ORD_QTY	,
+IWI.WID	    as	RCRD_ID_NBR	,
+--IWI.WIQTYM	as	FUTR_USE_FLAG	, ---DATA LENGTH ISSUE
+--IWI.WIFLOC	as	DFLT_FORCED_LOC	, --Data '' Numeric 
+IWI.WIMWSH	as	MTD_WGT_SHIP	,
+IWI.WIYWSH	as	YTD_WGT_SHIP	,
+IWI.WIWOPB	as	MTD_WGT_OPN_BAL	,
+IWI.WIWISS	as	MTD_WGT_ISS	,
+IWI.WIWRPT	as	MTD_WGT_RCPT	,
+IWI.WIWADJ	as	MTD_WGT_ADJ	,
+IWI.WIWWRK	as	ORD_ENTR_WORK_WGT	,
+IWI.WIPLC	as	PROD_LFCYL_CTRL_CD 
+---IWI.WOWRK	as	WORK_ORD_ENTR_NBR	, --COLUMN DOES NOT EXIST IN TARGET TABLE
+---IWI.WIOQEF	as	WM_ALLOC_NBR   ---data issue	
+FROM {{source('INFORLX','IWI')}} IWI
+WHERE WWHS IS NOT NULL
+AND WPROD IS NOT NULL

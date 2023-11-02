@@ -1,0 +1,42 @@
+sbd_edw_ops:
+  target: dev
+  outputs:
+
+    dev: # User-Password config
+      type: snowflake
+      account: ukvjlle-gx84872
+      user: shirishashyam
+      password: Shyam@987
+      role: DEV_EDWBUILD_RW
+      database: DEV_EDW
+      warehouse: compute_wh
+      schema: SAPCE03
+      threads: 5
+      client_session_keep_alive: False
+      query_tag: dbt_special
+
+    # test: # User-Password config
+    #   type: snowflake
+    #   account: sbd_caspian.us-east-1
+    #   user: "{{ env_var('DBT_TEST_USER') }}"
+    #   password: "{{ env_var('DBT_TEST_PASSWORD') }}"
+    #   role: TEST_EDWBUILD_RW
+    #   database: TEST_EDW
+    #   warehouse: TEST_EDW_WH
+    #   schema: CONSOLIDATED
+    #   threads: 5
+    #   client_session_keep_alive: False
+    #   query_tag: dbt_special
+      
+    # prod: # User-Password config
+    #   type: snowflake
+    #   account: sbd_caspian.us-east-1
+    #   user: "{{ env_var('DBT_PROD_USER') }}"
+    #   password: "{{ env_var('DBT_PROD_PASSWORD') }}"
+    #   role: PROD_EDWBUILD_RW
+    #   database: PROD_EDW
+    #   warehouse: PROD_EDW_WH
+    #   schema: PUBLIC
+    #   threads: 5
+    #   client_session_keep_alive: False
+    #   query_tag: dbt_special

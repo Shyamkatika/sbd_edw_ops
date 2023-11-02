@@ -1,0 +1,11 @@
+packages:
+  # - git: "https://{{env_var('DBT_ENV_SECRET_GIT_CREDENTIAL')}}@github.com/sbd-caspian-infra/sbd-edw-main.git"
+  # #- git: "git@github.com:sbd-caspian-infra/sbd-edw-main.git"
+  #   subdirectory: "caspian"
+  #   revision: pxm0322b
+  #   warn-unpinned: false
+  - package: dbt-labs/dbt_utils
+    version: 0.8.6    
+  # #- git: "git@github.com:sbd-caspian-infra/sbd_dbt_auditor.git"
+  # - git: "https://{{env_var('DBT_ENV_SECRET_GIT_CREDENTIAL')}}@github.com/sbd-caspian-infra/sbd_dbt_auditor.git"
+  #   revision: zone4_5

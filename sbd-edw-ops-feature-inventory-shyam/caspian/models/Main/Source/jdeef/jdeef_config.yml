@@ -1,0 +1,105 @@
+version: 2
+
+sources:
+  - name: JDEEF
+    schema: JDEEF
+    database: "{% if target.database == 'DEV_EDW' -%} PROD_RAW{% elif target.database == 'TEST_EDW' -%} PROD_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: F0101
+        identifier: VW_F0101
+      - name: F0004
+        identifier: VW_F0004
+      - name: F0005
+        identifier: VW_F0005
+      - name: F0006
+        identifier: VW_F0006
+      - name: F0007
+        identifier: VW_F0007
+      - name: F0010
+        identifier: VW_F0010
+      - name: F0014
+        identifier: VW_F0014
+      - name: F0015
+        identifier: VW_F0015
+      - name: F0111
+        identifier: VW_F0111
+      - name: F0115
+        identifier: VW_F0115
+      - name: F0116
+        identifier: VW_F0116
+      - name: F03012
+        identifier: VW_F03012
+      - name: F03B11
+        identifier: VW_F03B11
+      - name: F03B13
+        identifier: VW_F03B13
+      - name: F03B14
+        identifier: VW_F03B14
+      - name: F03B40
+        identifier: VW_F03B40
+      - name: F0401
+        identifier: VW_F0401
+      - name: F0411
+        identifier: VW_F0411
+      - name: F0413
+        identifier: VW_F0413
+      - name: F0414
+        identifier: VW_F0414
+      - name: F0901
+        identifier: VW_F0901
+      - name: F0902
+        identifier: VW_F0902
+      - name: F0911
+        identifier: VW_F0911
+      - name: F3002
+        identifier: VW_F3002      
+      - name: F30026
+        identifier: VW_F30026
+      - name: F4070
+        identifier: VW_F4070
+      - name: F4071
+        identifier: VW_F4071
+      - name: F4072
+        identifier: VW_F4072
+      - name: F4101
+        identifier: VW_F4101
+      - name: F4102
+        identifier: VW_F4102
+      - name: F41021
+        identifier: VW_F41021
+      - name: F4105
+        identifier: VW_F4105
+      - name: F4106
+        identifier: VW_F4106
+      - name: F4111
+        identifier: VW_F4111
+      - name: F41112
+        identifier: VW_F41112
+      - name: F4201
+        identifier: VW_F4201
+      - name: F4209
+        identifier: VW_F4209
+      - name: F4211
+        identifier: VW_F4211
+      - name: F42199
+        identifier: VW_F42199
+      - name: F4311
+        identifier: VW_F4311
+      - name: F43121
+        identifier: VW_F43121
+      - name: F5542301
+        identifier: VW_F5542301
+      - name: F41003
+        identifier: VW_F41003
+      - name: F4906
+        identifier: VW_F4906
+      - name: F4104
+        identifier: VW_F4104
+      - name: F0013
+        identifier: VW_F0013
+      - name: F4141
+        identifier: VW_F4141
+      - name: F4140
+        identifier: VW_F4140
+            

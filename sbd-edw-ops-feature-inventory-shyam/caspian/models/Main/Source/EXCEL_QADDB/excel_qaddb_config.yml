@@ -1,0 +1,101 @@
+version: 2
+
+sources:
+ 
+  - name: EXCEL_QADDB
+    schema: EXCEL_QADDB
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+      DEV_RAW{% elif target.database == 'TEST_EDW' -%} 
+      TEST_RAW{% elif target.database == 'PROD_EDW' -%} 
+      PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: TR_HIST
+        identifier: VW_TR_HIST
+      - name: AD_MSTR
+        identifier: VW_AD_MSTR
+      - name: AR_MSTR
+        identifier: VW_AR_MSTR      
+      - name: PT_MSTR
+        identifier: VW_PT_MSTR 
+      - name: PL_MSTR
+        identifier: VW_PL_MSTR 
+      - name: PTP_DET
+        identifier: VW_PTP_DET 
+      - name: PS_MSTR
+        identifier: VW_PS_MSTR 
+      - name: POD_DET
+        identifier: VW_POD_DET 
+      - name: PO_MSTR
+        identifier: VW_PO_MSTR 
+      - name: PRH_HIST
+        identifier: VW_PRH_HIST
+      - name: IH_HIST
+        identifier: VW_IH_HIST 
+      - name: IDH_HIST
+        identifier: VW_IDH_HIST 
+      - name: IN_MSTR
+        identifier: VW_IN_MSTR
+      - name: SCT_DET
+        identifier: VW_SCT_DET
+      - name: LD_DET
+        identifier: VW_LD_DET
+      - name: LAD_DET
+        identifier: VW_LAD_DET
+      - name: SI_MSTR
+        identifier: VW_SI_MSTR
+      - name: LOC_MSTR
+        identifier: VW_LOC_MSTR
+      - name: WO_MSTR
+        identifier: VW_WO_MSTR
+      - name: TX2D_DET
+        identifier: VW_TX2D_DET
+      - name: TX2_MSTR
+        identifier: VW_TX2_MSTR
+      - name: DSR_MSTR
+        identifier: VW_DSR_MSTR
+      - name: DS_DET
+        identifier: VW_DS_DET
+      - name: SOD_DET
+        identifier: VW_SOD_DET
+      - name: VD_MSTR
+        identifier: VW_VD_MSTR
+      - name: MRP_DET
+        identifier: VW_MRP_DET
+      - name: WOD_DET
+        identifier: VW_WOD_DET
+      - name: SO_MSTR
+        identifier: VW_SO_MSTR
+      - name: EN_MSTR
+        identifier: VW_EN_MSTR
+      - name: CM_MSTR
+        identifier: VW_CM_MSTR
+      - name: CODE_MSTR
+        identifier: VW_CODE_MSTR
+      - name: TR_HIST_MAX
+        identifier: VW_TR_HIST_MAX
+      - name: WR_ROUTE
+        identifier: VW_WR_ROUTE
+
+
+  - name: EXCEL_QADCUST
+    schema: EXCEL_QADCUST
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+      DEV_RAW{% elif target.database == 'TEST_EDW' -%} 
+      TEST_RAW{% elif target.database == 'PROD_EDW' -%} 
+      PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: XXALT_MSTR
+        identifier: VW_XXALT_MSTR
+  # - name: EXCEL_ERRORPROOF
+  #   schema: EXCEL_ERRORPROOF
+  #   database:  "{% if target.database == 'DEV_EDW' -%} 
+  #   DEV_RAW{% elif target.database == 'TEST_EDW' -%} 
+  #   TEST_RAW{% elif target.database == 'PROD_EDW' -%} 
+  #   PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+  #                {% else -%} INVALID_DATABASE{% endif -%}"
+  #   tables:
+  #     - name: UPISU
+  #       identifier: VW_UPISU
+

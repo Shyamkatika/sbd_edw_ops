@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_PRODUCT_BOM_PARENT','UFIDA','EDW_UFIDA_PRODUCT_BOM_PARENT_VW')}}

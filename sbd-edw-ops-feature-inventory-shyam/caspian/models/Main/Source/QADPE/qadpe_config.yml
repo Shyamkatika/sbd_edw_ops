@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+ 
+  - name: QADPE
+    schema: QADPE
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+    PROD_RAW{% elif target.database == 'TEST_EDW' -%} 
+    PROD_RAW{% elif target.database == 'PROD_EDW' -%} 
+    PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: INMSTR
+        identifier: VW_INMSTR
+      - name: LADDET
+        identifier: VW_LADDET
+      - name: PTPDET
+        identifier: VW_PTPDET
+      - name: BDPSMSTR
+        identifier: VW_BDPSMSTR
+      - name: LDDET
+        identifier: VW_LDDET
+      - name: PTMSTR
+        identifier: VW_PTMSTR                  

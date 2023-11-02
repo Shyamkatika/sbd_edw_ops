@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+ 
+  - name: SAPC11
+    schema: SAPC11
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+    PROD_RAW{% elif target.database == 'TEST_EDW' -%} 
+    PROD_RAW{% elif target.database == 'PROD_EDW' -%} 
+    PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: STKO
+        identifier: VW_STKO
+      - name: MAST
+        identifier: VW_MAST
+      - name: LTAP
+        identifier: VW_LTAP
+      - name: T001L
+        identifier: VW_T001L
+      - name: RKPF
+        identifier: VW_RKPF   
+      - name: VW_MARDH
+        identifier: VW_MARDH 
+      - name: VW_MARD
+        identifier: VW_MARD  
+      - name: LTAK
+        identifier: VW_LTAK   
+      - name: MARD
+        identifier: VW_MARD
+      - name: MARDH
+        identifier: VW_MARDH
+      - name: MSEG
+        identifier: VW_MSEG
+      - name: RESB
+        identifier: VW_RESB
+      - name: MKPF
+        identifier: VW_MKPF
+      - name: STPO
+        identifier: VW_STPO
+      - name: ITEMLEDGERENTRY
+        identifier: VW_ITEMLEDGERENTRY
+      - name: IKPF
+        identifier: VW_IKPF
+      - name: ISEG
+        identifier: VW_ISEG
+      - name: STAS
+        identifier: VW_STAS
+           

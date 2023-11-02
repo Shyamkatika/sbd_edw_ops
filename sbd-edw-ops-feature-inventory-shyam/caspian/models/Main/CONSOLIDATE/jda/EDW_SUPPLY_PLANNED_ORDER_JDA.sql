@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_SUPPLY_PLANNED_ORDER','JDA','EDW_JDA_SUPPLY_PLANNED_ORDER_VW')}}

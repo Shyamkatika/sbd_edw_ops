@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+ 
+  - name: SAPC11
+    schema: SAPC11
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+      DEV_RAW{% elif target.database == 'TEST_EDW' -%} 
+      DEV_RAW{% elif target.database == 'PROD_EDW' -%} 
+      PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: EMP
+        identifier: VW_EMP

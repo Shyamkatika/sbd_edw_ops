@@ -1,0 +1,25 @@
+select
+UPPER(CONCAT(coalesce(BDRESITEM.bd_domain::varchar,''),'~',coalesce(BDRESITEM.bd_lugar::varchar,''),'~' ,coalesce(BDRESITEM.bd_mes::varchar,''),'~' ,coalesce(BDRESITEM.bd_ano::varchar,''),'~' ,coalesce(BDRESITEM.bd_item::varchar,''))) AS INVTY_RSRV_DTL_KEY,
+'QADBR' AS {{var('column_srcsyskey')}},
+MD5(UPPER(CONCAT(coalesce(BDRESITEM.bd_domain::varchar,''),'~',coalesce(BDRESITEM.bd_lugar::varchar,''),'~' ,coalesce(BDRESITEM.bd_mes::varchar,''),'~' ,coalesce(BDRESITEM.bd_ano::varchar,''),'~' ,coalesce(BDRESITEM.bd_item::varchar,'')))) AS {{var('column_rechashkey')}},
+{{var('default_n')}} AS {{var('column_DEL_FROM_SRC_FLAG')}},
+'{{model.name}}' AS {{var('column_ETL_INS_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_INS_DTE')}},
+'{{model.name}}' AS {{var('column_ETL_UPD_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_UPD_DTE')}},
+BDRESITEM.LOADDTS AS {{var('column_z3loddtm')}},
+BDRESITEM.LOADDTS AS {{var('column_vereffdte')}},
+'9999-12-31 00:00:00.000' AS {{var('column_verexpirydt')}},
+{{var('default_y')}} AS {{var('column_currrecflag')}},
+{{var('default_n')}} AS {{var('column_orprecflag')}},
+case when length(trim(UPPER((BDRESITEM.bd_domain)))) <1 then {{var('default_mapkey')}} when UPPER(BDRESITEM.bd_domain)
+IS NULL then {{var('default_mapkey')}} else UPPER(BDRESITEM.bd_domain) end AS PROD_SLOC_KEY,
+BDRESITEM.bd_item AS INVTY_PROD_CD,
+BDRESITEM.bd_lugar AS DOMAIN_CD,
+BDRESITEM.bd_mes as INVTY_ALLOC_MTH,
+BDRESITEM.bd_ano as INVTY_ALLOC_YR,
+BDRESITEM.bd_qtde as INVTY_RSRV_QTY,
+BDRESITEM.bd_desc as PROD_DESC,
+BDRESITEM.bd_qtde_transf as TOT_INVTY_TRNSFR_QTY,
+BDRESITEM.bd_qtde_aloc as TOT_INVTY_ALLOC_QTY
+FROM {{source('QADBR','BDRESITEM')}} BDRESITEM

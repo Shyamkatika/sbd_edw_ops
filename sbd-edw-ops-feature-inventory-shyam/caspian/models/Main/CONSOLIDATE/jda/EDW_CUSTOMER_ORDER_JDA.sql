@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_CUSTOMER_ORDER','JDA','EDW_JDA_CUSTOMER_ORDER_VW')}}

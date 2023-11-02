@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_RESOURCE_LOAD_DETAILS','JDA','EDW_JDA_RESOURCE_LOAD_DETAILS_VW')}}

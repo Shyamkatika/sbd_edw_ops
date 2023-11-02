@@ -1,0 +1,92 @@
+version: 2
+
+sources:
+ 
+ 
+  - name: JDAEDW
+    schema: JDA_QV
+    database:  "{% if target.database == 'DEV_EDW' -%} PROD_RAW{% elif target.database == 'TEST_EDW' -%} PROD_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: HIST
+        identifier: VW_HIST
+      - name: TRNITEM
+        identifier: VW_TRNITEM
+      - name: DMDUNIT
+        identifier: VW_DMDUNIT
+      - name: CURRENCYPROFILEVAL
+        identifier: VW_CURRENCYPROFILEVAL 
+      - name: DMDGROUP
+        identifier: VW_DMDGROUP
+      - name: DYNDEPSRC
+        identifier: VW_DYNDEPSRC   
+      - name: DFUEXCEPTION
+        identifier: VW_DFUEXCEPTION 
+      - name: DFUMAP
+        identifier: VW_DFUMAP      
+      - name: DFUTOSKUFCST
+        identifier: VW_DFUTOSKUFCST  
+      - name: HISTFCST
+        identifier: VW_HISTFCST                        
+      - name: SKUPLANNINGPARAM
+        identifier: VW_SKUPLANNINGPARAM       
+      - name: FCSTDRAFT
+        identifier: VW_FCSTDRAFT       
+      - name: FCST
+        identifier: VW_FCST  
+      - name: ITEM
+        identifier: VW_ITEM                           
+      - name: VEHICLELOAD
+        identifier: VW_VEHICLELOAD 
+      - name: PRODUCTIONSTEP
+        identifier: VW_PRODUCTIONSTEP                                             
+      - name: RESPROJSTATIC
+        identifier: VW_RESPROJSTATIC                        
+      - name: SKUDEMANDPARAM
+        identifier: VW_SKUDEMANDPARAM                        
+      - name: DFUTOSKU
+        identifier: VW_DFUTOSKU
+      - name: SOURCING
+        identifier: VW_SOURCING
+      - name: CAL
+        identifier: VW_CAL
+      - name: CALDATA
+        identifier: VW_CALDATA
+      - name: VEHICLELOADLINE
+        identifier: VW_VEHICLELOADLINE 
+      - name: PRICEPROFILEVAL
+        identifier: VW_PRICEPROFILEVAL
+      - name: PLANORDER
+        identifier: VW_PLANORDER 
+      - name: SKUSAFETYSTOCKPARAM
+        identifier: VW_SKUSAFETYSTOCKPARAM
+      - name: RECSHIP
+        identifier: VW_RECSHIP
+      - name: SKUDISPLAY
+        identifier: VW_SKUDISPLAY
+      - name: SKU
+        identifier: VW_SKU
+      - name: SKUDEPLOYMENTPARAM
+        identifier: VW_SKUDEPLOYMENTPARAM
+      - name: LOC
+        identifier: VW_LOC
+      - name: CUSTORDER
+        identifier: VW_CUSTORDER     
+      - name: RES
+        identifier: VW_RES
+      - name: RESLOADDETAIL
+        identifier: VW_RESLOADDETAIL
+      - name: PRODUCTIONMETHOD
+        identifier: VW_PRODUCTIONMETHOD 
+      - name: NETWORK
+        identifier: VW_NETWORK
+      - name: UDTSKUPROJSTATICWEEKLY
+        identifier: VW_UDT_SKUPROJSTATIC_WEEKLY
+      - name: DFU
+        identifier: VW_DFU
+      - name: DFUVIEW
+        identifier: VW_DFUVIEW
+      - name: MODEL
+        identifier: VW_MODEL   
+      - name: BOM
+        identifier: VW_BOM        

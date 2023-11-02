@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_PRODUCTION_METHOD','JDAEDW','EDW_JDA_PRODUCTION_METHOD_VW')}}

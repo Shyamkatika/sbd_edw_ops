@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+ 
+  - name: INFORLX
+    schema: INFORLX
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+    TEST_RAW{% elif target.database == 'TEST_EDW' -%} 
+    PROD_RAW{% elif target.database == 'PROD_EDW' -%} 
+    PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: IWI
+        identifier: VW_IWI
+      - name: IPH
+        identifier: VW_IPH
+      - name: MBM
+        identifier: VW_MBM

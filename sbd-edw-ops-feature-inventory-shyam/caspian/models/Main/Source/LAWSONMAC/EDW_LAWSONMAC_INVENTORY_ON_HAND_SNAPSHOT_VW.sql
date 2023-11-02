@@ -1,0 +1,38 @@
+SELECT
+CONCAT(coalesce(WMSLCMP.SLDIV::varchar,''),'~',coalesce(WMSLCMP.SLWHSE::varchar,''),'~',coalesce(WMSLCMP.SLBLOC::varchar,''),'~',
+coalesce(WMSLCMP.SLITEM::varchar,''),'~',coalesce(WMSLCMP.SLLTYP::varchar,'')
+,'~',coalesce(WMSLCMP.SLDADD::varchar,''),'~',coalesce(WMSLCMP.SLSRRD::varchar,''))		as	INVTY_ON_HAND_SNAPSHOT_KEY	,
+'LAWSONMAC' AS {{var('column_srcsyskey')}}	,
+MD5(CONCAT(coalesce(WMSLCMP.SLDIV::varchar,''),'~',coalesce(WMSLCMP.SLWHSE::varchar,''),'~',coalesce(WMSLCMP.SLBLOC::varchar,''),'~',
+coalesce(WMSLCMP.SLITEM::varchar,''),'~',coalesce(WMSLCMP.SLLTYP::varchar,'')
+,'~',coalesce(WMSLCMP.SLDADD::varchar,''),'~',coalesce(WMSLCMP.SLSRRD::varchar,''))) 
+AS {{var('column_redhashkey')}},
+{{var('default_n')}} AS {{var('column_delfromsrcflag')}},
+'{{model.name}}' AS {{var('column_ETL_INS_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_INS_DTE')}},
+'{{model.name}}' AS {{var('column_ETL_UPD_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_UPD_DTE')}},
+WMSLCMP.LOADDTS AS {{var('column_z3loddtm')}},
+WMSLCMP.LOADDTS AS {{var('column_vereffdte')}},
+'9999-12-31 00:00:00.000' AS {{var('column_verexpirydt')}},
+{{var('default_y')}} AS {{var('column_currrecflag')}},
+{{var('default_n')}} AS {{var('column_orprecflag')}},
+WMSLCMP.SLDIV as DIV_ID,
+WMSLCMP.SLWHSE		as	SLOC_ID	,
+WMSLCMP.SLBLOC		as	STORG_BIN_ID	,
+UPPER(CONCAT(COALESCE(WMSLCMP.SLDIV,''), '~',COALESCE(WMSLCMP.SLITEM,''))) AS PROD_KEY,
+WMSLCMP.SLLTYP as SUB_LOC_TYP,
+WMSLCMP.SLMAXQ		as	PROD_MAX_ORD_QTY	,
+WMSLCMP.SLMINQ		as	PROD_MIN_ORD_QTY	,
+WMSLCMP.SLQOH 		as	PROD_ON_HAND_QTY	,
+WMSLCMP.SLALLQ		as	PROD_ALLOC_QTY	,
+WMSLCMP.SLBQTY		as	PROD_BKORD_QTY	,
+TRY_TO_DATE(REPLACE(ROUND(SLSRRD),substr(ROUND(SLSRRD),1,2),round(substr(ROUND(SLSRRD),1,2)+1928)),'YYYYMMDD')		as	PROD_RCV_DTE	, 
+WMSLCMP.SLSCNY		as	PROD_RCV_YR_ID	,
+TRY_TO_DATE(REPLACE(WMSLCMP.SLDADD,substr(WMSLCMP.SLDADD,1,2),round(substr(WMSLCMP.SLDADD,1,2)+1928)),'YYYYMMDD')		as	PROD_ADD_LOC_DTE	, 
+WMSLCMP.SLACNY as PROD_ADD_LOC_YR_ID,
+WMSLCMP.SLSTAT AS INVTY_STAT_TYP,
+WMSLCMP.SLRORD  		as	REF_WORK_ORD_NBR	,
+WMSLCMP.SLSITM as PROD_REL_SET_ITEM,
+WMSLCMP.SLMSC5  		as	MISC_TYP
+FROM {{source('LAWSONMAC','WMSLCMP')}} WMSLCMP

@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_PRODUCT','JDAEDW_BACK','EDW_JDA_PRODUCT_DMD_VW')}}

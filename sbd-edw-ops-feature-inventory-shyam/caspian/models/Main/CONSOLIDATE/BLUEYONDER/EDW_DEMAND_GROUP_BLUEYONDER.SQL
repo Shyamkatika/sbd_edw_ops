@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_DEMAND_GROUP','BLUEYONDER','EDW_BLUEYONDER_DEMAND_GROUP_VW')}}

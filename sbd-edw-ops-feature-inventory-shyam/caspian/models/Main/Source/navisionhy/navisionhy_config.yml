@@ -1,0 +1,127 @@
+version: 2
+
+sources:
+ 
+  - name: NAVISIONHY
+    schema: NAVISIONHY
+    database: "{% if target.database == 'DEV_EDW' -%} PROD_RAW{% elif target.database == 'TEST_EDW' -%} PROD_RAW{% elif target.database == 'PROD_EDW' -%} PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: BINCONTENT
+        identifier: VW_BINCONTENT
+      - name: CALENDARENTRY
+        identifier: VW_CALENDARENTRY
+      - name: COMPANYINFORMATION
+        identifier: VW_COMPANYINFORMATION
+      - name: CURRENCY
+        identifier: VW_CURRENCY
+      - name: CUSTOMER
+        identifier: VW_CUSTOMER
+      - name: CUSTOMERPRICEGROUP
+        identifier: VW_CUSTOMERPRICEGROUP
+      - name: DIMENSIONVALUE
+        identifier: VW_DIMENSIONVALUE
+      - name: FIXEDASSET
+        identifier: VW_FIXEDASSET
+      - name: GENPRODPOSTINGGROUP
+        identifier: VW_GENPRODPOSTINGGROUP
+      - name: GLACCOUNT
+        identifier: VW_GLACCOUNT
+      - name: GLENTRY
+        identifier: VW_GLENTRY
+      - name: GLSETUP
+        identifier: VW_GLSETUP
+      - name: INVENTORYPOSTINGGROUP
+        identifier: VW_INVENTORYPOSTINGGROUP
+      - name: ITEM
+        identifier: VW_ITEM
+      - name: ITEMATTRIBUTE
+        identifier: VW_ITEMATTRIBUTE
+      - name: ITEMCATEGORY
+        identifier: VW_ITEMCATEGORY
+      - name: ITEMCHARGE
+        identifier: VW_ITEMCHARGE
+      - name: ITEMDISCOUNTGROUP
+        identifier: VW_ITEMDISCOUNTGROUP
+      - name: ITEMHOLDCODE
+        identifier: VW_ITEMHOLDCODE
+      - name: ITEMLEDGERENTRY
+        identifier: VW_ITEMLEDGERENTRY
+      - name: ITEMVARIANT
+        identifier: VW_ITEMVARIANT
+      - name: JOB
+        identifier: VW_JOB
+      - name: MANUFACTURER
+        identifier: VW_MANUFACTURER
+      - name: PAYMENTTERMS
+        identifier: VW_PAYMENTTERMS
+      - name: PRODUCTIONBOMLINE
+        identifier: VW_PRODUCTIONBOMLINE
+      - name: PRODUCTIONBOMVERSION
+        identifier: VW_PRODUCTIONBOMVERSION
+      - name: PURCHASEHEADER
+        identifier: VW_PURCHASEHEADER
+      - name: PURCHASEHEADER1
+        identifier: VW_PURCHASEHEADER1
+      - name: PURCHASELINE
+        identifier: VW_PURCHASELINE
+      - name: PURCHASELINE1
+        identifier: VW_PURCHASELINE1
+      - name: PURCHCRMEMOHDR
+        identifier: VW_PURCHCRMEMOHDR
+      - name: PURCHCRMEMOLINE
+        identifier: VW_PURCHCRMEMOLINE
+      - name: PURCHINVHEADER
+        identifier: VW_PURCHINVHEADER
+      - name: PURCHINVLINE
+        identifier: VW_PURCHINVLINE
+      - name: PURCHRCPTHEADER
+        identifier: VW_PURCHRCPTHEADER
+      - name: PURCHRCPTLINE
+        identifier: VW_PURCHRCPTLINE
+      - name: RESOURCE
+        identifier: VW_RESOURCE
+      - name: RETURNRECEIPTHEADER
+        identifier: VW_RETURNRECEIPTHEADER
+      - name: RETURNRECEIPTLINE
+        identifier: VW_RETURNRECEIPTLINE
+      - name: SALESINVOICEHEADER
+        identifier: VW_SALESINVOICEHEADER
+      - name: SALESINVOICELINE
+        identifier: VW_SALESINVOICELINE
+      - name: SALESLINE
+        identifier: VW_SALESLINE
+      - name: SALESPERSONPURCHASER
+        identifier: VW_SALESPERSONPURCHASER
+      - name: SALESSHIPMENTHEADER
+        identifier: VW_SALESSHIPMENTHEADER
+      - name: SALESSHIPMENTLINE
+        identifier: VW_SALESSHIPMENTLINE
+      - name: SHIPPINGAGENT
+        identifier: VW_SHIPPINGAGENT
+      - name: STOCKKEEPINGUNIT
+        identifier: VW_STOCKKEEPINGUNIT
+      - name: TAXGROUP
+        identifier: VW_TAXGROUP
+      - name: UNITOFMEASURE
+        identifier: VW_UNITOFMEASURE
+      - name: VALUEENTRY
+        identifier: VW_VALUEENTRY
+      - name: VENDOR
+        identifier: VW_VENDOR
+      - name: VENDORLEDGERENTRY
+        identifier: VW_VENDORLEDGERENTRY
+      - name: SALESHEADER
+        identifier: VW_SALESHEADER
+      - name: SHIPTOADDRESS
+        identifier: VW_SHIPTOADDRESS
+      - name: ITEMCROSSREFERENCE
+        identifier: VW_ITEMCROSSREFERENCE
+      - name: LOCATION
+        identifier: VW_LOCATION
+      - name: PRODUCTIONBOMHEADER
+        identifier: VW_PRODUCTIONBOMHEADER
+      - name: RESERVATIONENTRY
+        identifier: VW_RESERVATIONENTRY
+      - name: PHYSINVENTORYLEDGERENTRY
+        identifier: VW_PHYSINVENTORYLEDGERENTRY        

@@ -1,0 +1,39 @@
+SELECT
+UPPER(concat(COALESCE(HISTFCST.DMDUNIT,''),'~',
+COALESCE(HISTFCST.DMDGROUP,''),'~',COALESCE(HISTFCST.LOC,''),'~',COALESCE(HISTFCST.MODEL,''),'~',
+COALESCE(HISTFCST.FCSTDATE,''),'~',COALESCE(HISTFCST.STARTDATE,''))) as DMD_FCST_HIST_KEY,
+'JDAEDW' AS {{var('column_srcsyskey')}},
+MD5(UPPER(concat(COALESCE(HISTFCST.DMDUNIT,''),'~',
+COALESCE(HISTFCST.DMDGROUP,''),'~',COALESCE(HISTFCST.LOC,''),'~',COALESCE(HISTFCST.MODEL,''),'~',
+COALESCE(HISTFCST.FCSTDATE,''),'~',COALESCE(HISTFCST.STARTDATE,'')))) AS {{var('column_redhashkey')}},
+{{var('default_n')}} AS {{var('column_delfromsrcflag')}},
+'{{model.name}}' AS {{var('column_ETL_INS_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_INS_DTE')}},
+'{{model.name}}' AS {{var('column_ETL_UPD_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_UPD_DTE')}},
+HISTFCST.LOADDTS AS {{var('column_z3loddtm')}},
+HISTFCST.LOADDTS AS {{var('column_vereffdte')}},
+'9999-12-31 00:00:00.000' AS {{var('column_verexpirydt')}},
+{{var('default_y')}} AS {{var('column_currrecflag')}},
+{{var('default_n')}} AS {{var('column_orprecflag')}},
+HISTFCST.BASEFCST AS BASE_FCST_QTY,
+case when length(HISTFCST.DMDGROUP) <1 then {{var('default_mapkey')}}
+when HISTFCST.DMDGROUP IS NULL then {{var('default_mapkey')}} else HISTFCST.DMDGROUP end AS DMD_GRP_KEY,
+HISTFCST.DMDUNIT  AS DMD_UNIT_NAME,
+--TRY_TO_DATE(HISTFCST.FCSTDATE,'YYYYMMDD') AS CURR_FCST_DTE,
+HISTFCST.FCSTDATE AS CURR_FCST_DTE,
+HISTFCST.FCSTOVERRIDE AS FCST_OVRD_QTY,
+HISTFCST.LAG AS FCST_PERD_LAG_CNT,
+HISTFCST.MARKETACTIVITY AS MKT_ACTVTY_QTY,
+HISTFCST.NONBASEFCST AS NON_BASE_FCST_QTY,
+HISTFCST.RECONCILEDFCST AS RECON_FCST_QTY,
+---TRY_TO_DATE(MARD.DLINL,'YYYYMMDD')
+--TRY_TO_DATE(HISTFCST.STARTDATE,'YYYYMMDD') AS FCST_START_DTE,
+HISTFCST.STARTDATE AS FCST_START_DTE,
+HISTFCST.TOTFCSTLOCKADJ AS ADJ_LOCK_FCST_QTY,
+case when length(HISTFCST.MODEL) <1 then {{var('default_mapkey')}}
+when HISTFCST.MODEL IS NULL then {{var('default_mapkey')}} else HISTFCST.MODEL end AS MODEL_TYP,
+{{var('default_key')}} AS FCST_STREAM_KEY,
+case when length(HISTFCST.LOC) <1 then {{var('default_mapkey')}}
+when HISTFCST.LOC IS NULL then {{var('default_mapkey')}} else HISTFCST.LOC end AS LOC_KEY
+FROM {{source('JDAEDW','HISTFCST')}} HISTFCST

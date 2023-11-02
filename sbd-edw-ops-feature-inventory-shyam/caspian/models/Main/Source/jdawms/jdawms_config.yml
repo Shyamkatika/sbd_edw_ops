@@ -1,0 +1,82 @@
+version: 2
+
+sources:
+ 
+  - name: JDAWMSASIA
+    schema: JDAWMSASIA
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+    PROD_RAW{% elif target.database == 'TEST_EDW' -%} 
+    PROD_RAW{% elif target.database == 'PROD_EDW' -%} 
+    PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: CNTTYP
+        identifier: VW_CNTTYP
+      - name: CNTHST
+        identifier: VW_CNTHST
+      - name: CNTWRK
+        identifier: VW_CNTWRK
+      - name: invsub
+        identifier: VW_invsub  
+      - name: INVDTL
+        identifier: VW_INVDTL  
+
+  - name: JDAWMSEANZ
+    schema: JDAWMSEANZ
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+    PROD_RAW{% elif target.database == 'TEST_EDW' -%} 
+    PROD_RAW{% elif target.database == 'PROD_EDW' -%} 
+    PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: CNTTYP
+        identifier: VW_CNTTYP
+      - name: CNTHST
+        identifier: VW_CNTHST
+      - name: CNTWRK
+        identifier: VW_CNTWRK 
+      - name: invsub
+        identifier: VW_invsub 
+      - name: INVDTL
+        identifier: VW_INVDTL  
+
+  - name: JDAWMSLA1
+    schema: JDAWMSLA1
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+    PROD_RAW{% elif target.database == 'TEST_EDW' -%} 
+    PROD_RAW{% elif target.database == 'PROD_EDW' -%} 
+    PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: CNTTYP
+        identifier: VW_CNTTYP
+      - name: CNTHST
+        identifier: VW_CNTHST
+      - name: CNTWRK
+        identifier: VW_CNTWRK
+      - name: invsub
+        identifier: VW_invsub
+      - name: INVDTL
+        identifier: VW_INVDTL 
+
+ 
+
+  - name: JDAWMSNA1
+    schema: JDAWMSNA1
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+    PROD_RAW{% elif target.database == 'TEST_EDW' -%} 
+    PROD_RAW{% elif target.database == 'PROD_EDW' -%} 
+    PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: CNTTYP
+        identifier: VW_CNTTYP
+      - name: CNTHST
+        identifier: VW_CNTHST
+      - name: CNTWRK
+        identifier: VW_CNTWRK
+      - name: invsub
+        identifier: VW_invsub
+      - name: INVDTL
+        identifier: VW_INVDTL
+        

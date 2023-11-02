@@ -1,0 +1,29 @@
+Select
+UPPER(CONCAT(coalesce(DFUEXCEPTION.DMDUNIT::VARCHAR,''),'~',coalesce(DFUEXCEPTION.DMDGROUP::VARCHAR,''),'~',coalesce(DFUEXCEPTION.LOC::VARCHAR,''),'~' ,
+coalesce(DFUEXCEPTION.MODEL::VARCHAR,''),'~' ,coalesce(DFUEXCEPTION.FUNCTIONNAME::VARCHAR,''),'~',coalesce(DFUEXCEPTION.EXCEPTION::VARCHAR,''),'~',coalesce(DFUEXCEPTION.FUNCTIONNUM::VARCHAR,''))) AS DMD_FCST_EXCEPTION_KEY,
+'JDA' AS {{var('column_srcsyskey')}},
+MD5(UPPER(CONCAT(coalesce(DFUEXCEPTION.DMDUNIT::VARCHAR,''),'~',coalesce(DFUEXCEPTION.DMDGROUP::VARCHAR,''),'~',coalesce(DFUEXCEPTION.LOC::VARCHAR,''),'~' ,
+coalesce(DFUEXCEPTION.MODEL::VARCHAR,''),'~' ,coalesce(DFUEXCEPTION.FUNCTIONNAME::VARCHAR,''),'~',coalesce(DFUEXCEPTION.EXCEPTION::VARCHAR,''),'~',coalesce(DFUEXCEPTION.FUNCTIONNUM::VARCHAR,'')))) AS {{var('column_rechashkey')}},
+{{var('default_n')}} AS {{var('column_DEL_FROM_SRC_FLAG')}},
+'{{model.name}}' AS {{var('column_ETL_INS_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_INS_DTE')}},
+'{{model.name}}' AS {{var('column_ETL_UPD_PID')}},
+CURRENT_TIMESTAMP::TIMESTAMP_NTZ AS {{var('column_ETL_UPD_DTE')}},
+DFUEXCEPTION.LOADDTS AS {{var('column_z3loddtm')}},
+DFUEXCEPTION.LOADDTS AS {{var('column_vereffdte')}},
+'9999-12-31 00:00:00.000' AS {{var('column_verexpirydt')}},
+{{var('default_y')}} AS {{var('column_currrecflag')}},
+{{var('default_n')}} AS {{var('column_orprecflag')}},
+DFUEXCEPTION.USERID AS PROC_EXECUTED_USER,
+DFUEXCEPTION.WHEN AS EXCEPTION_DETECTION_DTE,
+DFUEXCEPTION.DESCR AS EXCEPTION_DESC,
+DFUEXCEPTION.FUNCTIONNAME AS EXCEPTION_NAME,
+DFUEXCEPTION.FUNCTIONNUM AS EXCEPTION_TYP,
+DFUEXCEPTION.MODEL AS MODEL_NAME,
+DFUEXCEPTION.EXCEPTION AS EXCEPTION_CD_NBR,
+case when length(trim(UPPER((DFUEXCEPTION.DMDUNIT)))) <1 then {{var('default_mapkey')}} when UPPER(DFUEXCEPTION.DMDUNIT)
+IS NULL then {{var('default_mapkey')}} else UPPER(DFUEXCEPTION.DMDUNIT) end AS DMD_FCST_UNIT_KEY,
+DFUEXCEPTION.DMDGROUP AS DMD_GRP,
+case when length(trim(UPPER((DFUEXCEPTION.LOC)))) <1 then {{var('default_mapkey')}} when UPPER(DFUEXCEPTION.LOC)
+IS NULL then {{var('default_mapkey')}} else UPPER(DFUEXCEPTION.LOC) end AS LOC_KEY
+FROM {{source('JDA','DFUEXCEPTION')}} DFUEXCEPTION

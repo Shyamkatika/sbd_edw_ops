@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_PRODUCT_BOM_PARENT','SAPSHP','EDW_SAPSHP_PRODUCT_BOM_PARENT_VW')}}

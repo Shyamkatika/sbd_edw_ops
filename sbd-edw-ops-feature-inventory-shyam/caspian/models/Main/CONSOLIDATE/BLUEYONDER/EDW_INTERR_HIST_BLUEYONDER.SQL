@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_INTERR_HIST','BLUEYONDER','EDW_BLUEYONDER_INTERR_HIST_VW')}}

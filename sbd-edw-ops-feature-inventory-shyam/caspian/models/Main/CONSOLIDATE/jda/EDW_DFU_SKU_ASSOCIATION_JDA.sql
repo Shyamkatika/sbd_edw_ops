@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_DFU_SKU_ASSOCIATION','JDA','EDW_JDA_DFU_SKU_ASSOCIATION_VW')}}

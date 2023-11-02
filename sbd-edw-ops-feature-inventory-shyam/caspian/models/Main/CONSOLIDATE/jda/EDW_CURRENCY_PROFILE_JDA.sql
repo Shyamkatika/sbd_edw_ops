@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_CURRENCY_PROFILE','JDA','EDW_JDA_CURRENCY_PROFILE_VW')}}

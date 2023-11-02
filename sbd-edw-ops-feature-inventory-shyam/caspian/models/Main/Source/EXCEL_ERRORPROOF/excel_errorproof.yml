@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+ 
+  - name: EXCEL_ERRORPROOF
+    schema: EXCEL_ERRORPROOF
+    database:  "{% if target.database == 'DEV_EDW' -%} 
+      DEV_RAW{% elif target.database == 'TEST_EDW' -%} 
+      TEST_RAW{% elif target.database == 'PROD_EDW' -%} 
+      PROD_RAW{% elif target.database == 'UAT_EDW' -%}UAT_RAW
+                 {% else -%} INVALID_DATABASE{% endif -%}"
+    tables:
+      - name: UPISU
+        identifier: VW_UPISU
+      - name: PHYSCNT
+        identifier: VW_PHYSCNT
+      - name: PHYS_WG_INV
+        identifier: VW_PHYS_WG_INV
+      - name: LABELS
+        identifier: LABELS

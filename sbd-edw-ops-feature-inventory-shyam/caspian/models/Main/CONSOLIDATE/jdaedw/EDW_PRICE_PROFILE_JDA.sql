@@ -1,0 +1,1 @@
+{{sbd_edw_main.Main_call('EDW_PRICE_PROFILE','JDAEDW','EDW_JDA_PRICE_PROFILE_VW')}}
